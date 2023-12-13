@@ -1,4 +1,4 @@
-import { caesarCypher } from '../../fourthMission'
+import { caesarCypher } from '../../missions/fourthMission/fourthMission'
 
 test('Não deve ser possível cadastrar um nome com menos de 4 caracteres', () => {
   expect(caesarCypher('Elaine', 0)).toBe('Elaine')

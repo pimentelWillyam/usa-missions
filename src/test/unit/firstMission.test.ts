@@ -1,4 +1,4 @@
-import { letterCounter } from '../../firstMission'
+import { letterCounter } from '../../missions/firstMission/firstMission'
 
 test('Deve contar com precisão as letras em uma string', () => {
   expect(letterCounter('a', 'it was not part of their blood, it came to them very late')).toBe(4)

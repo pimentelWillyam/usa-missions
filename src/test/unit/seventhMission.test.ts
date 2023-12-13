@@ -1,4 +1,4 @@
-import { LocalDatabase, Validator } from '../../seventhMission'
+import { LocalDatabase, Validator } from '../../missions/seventhMission/seventhMission'
 
 test('Não deve ser possível cadastrar um nome com menos de 4 caracteres', () => {
   const localDatabase = new LocalDatabase(new Validator())

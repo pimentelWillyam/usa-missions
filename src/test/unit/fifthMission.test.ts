@@ -1,4 +1,4 @@
-import { crcCaulculator } from '../../fifthMission'
+import { crcCaulculator } from '../../missions/fifthMission/fifthMission'
 
 test('Não deve ser possível cadastrar um nome com menos de 4 caracteres', () => {
   expect(crcCaulculator('Willyam')).toBe('2005')

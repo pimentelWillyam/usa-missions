@@ -1,4 +1,4 @@
-import { LocalDatabase } from '../../sixthMission'
+import { LocalDatabase } from '../../missions/sixthMission/sixthMission'
 
 test('Deve ser capaz de registrar pessoas', () => {
   const localDatabase = new LocalDatabase()
