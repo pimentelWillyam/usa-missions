@@ -1,15 +1,15 @@
 import type IPerson from '../interface/IPerson'
 
 class Person implements IPerson {
-  constructor (id: string, date: string, message: string) {
-    this.id = id
-    this.date = date
-    this.message = message
+  constructor (name: string, email: string, age: number) {
+    this.name = name
+    this.email = email
+    this.age = age
   }
 
-  id!: string
-  date!: string
-  message!: string
+  name!: string
+  email!: string
+  age!: number
 }
 
 export default Person

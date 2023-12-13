@@ -1,9 +1,8 @@
-import type IPerson from './IPerson'
+import type Person from '../entity/Person'
 
 interface IPersonService {
-  create: (message: string) => Promise<IPerson>
-  getAll: () => Promise<IPerson[]>
-  get: (id: string) => Promise<IPerson | null>
+  create: (name: string, email: string, age: number) => Person
+  getAll: () => Person[]
 }
 
 export default IPersonService

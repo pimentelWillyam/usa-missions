@@ -1,12 +1,11 @@
-import type IPerson from './IPerson'
-import type IOracledbDataSource from './IOracledbDataSource'
+import type Person from '../entity/Person'
+import type { IMemoryDataSource } from './IMemoryDataSource'
 
 interface IPersonRepository {
-  readonly dataSource: IOracledbDataSource
+  readonly dataSource: IMemoryDataSource
 
-  create: (id: string, message: string, date: string) => Promise<IPerson>
-  getAll: () => Promise<IPerson[]>
-  get: (id: string) => Promise<IPerson | null>
+  create: (name: string, email: string, age: number) => Person
+  getAll: () => Person[]
 }
 
 export default IPersonRepository

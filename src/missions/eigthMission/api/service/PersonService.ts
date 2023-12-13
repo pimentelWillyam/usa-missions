@@ -1,21 +1,16 @@
-import type IDateManager from '../interface/IDateManager'
+import type Person from '../entity/Person'
 import type IPersonRepository from '../interface/IPersonRepository'
-import type IPerson from '../interface/IPerson'
 import type IPersonService from '../interface/IPersonService'
 
 class PersonService implements IPersonService {
-  constructor (readonly PersonRepository: IPersonRepository, readonly dateManager: IDateManager) {}
+  constructor (readonly PersonRepository: IPersonRepository) {}
 
-  async create (message: string): Promise<IPerson> {
-    return await this.PersonRepository.create(this.uuidGenerator.generate(), message, this.dateManager.getCurrentDateTime())
+  create (name: string, email: string, age: number): Person {
+    return this.PersonRepository.create(name, email, age)
   }
 
-  async getAll (): Promise<IPerson[]> {
-    return await this.PersonRepository.getAll()
-  }
-
-  async get (id: string): Promise<IPerson | null> {
-    return await this.PersonRepository.get(id)
+  getAll (): Person[] {
+    return this.PersonRepository.getAll()
   }
 }
 
