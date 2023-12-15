@@ -7,7 +7,7 @@ class MemoryDataSource {
     this.createPersonTable()
   }
 
-  private readonly createPersonTable = (): void => {
+  readonly createPersonTable = (): void => {
     this.personList = []
   }
 
