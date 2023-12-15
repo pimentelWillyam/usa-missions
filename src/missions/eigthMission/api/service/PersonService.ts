@@ -6,7 +6,7 @@ class PersonService implements IPersonService {
   constructor (readonly PersonRepository: IPersonRepository) {}
 
   create (name: string, email: string, age: number): Person {
-    return this.PersonRepository.create(name, email, age)
+    return this.PersonRepository.create(this.fullNameNormalizer(name), email, age)
   }
 
   getAll (): Person[] {
