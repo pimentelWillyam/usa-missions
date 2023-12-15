@@ -3,11 +3,7 @@ import { type Request, type Response } from 'express'
 import type IPersonController from '../interface/IPersonController'
 import type IPersonService from '../interface/IPersonService'
 import type IPersonValidator from '../interface/IPersonValidator'
-
-enum PersonErrorMessage {
-  UNKNOWN = 'Unknown error during request',
-  NOT_FOUND = 'The person could not be found',
-}
+import CustomError from '../validator/errors/CustomError'
 
 class PersonController implements IPersonController {
   constructor (readonly personService: IPersonService, readonly personValidator: IPersonValidator) {}
@@ -16,12 +12,13 @@ class PersonController implements IPersonController {
     try {
       this.personValidator.validate(req.body.name, req.body.email, req.body.age)
       const person = this.personService.create(req.body.name, req.body.email, req.body.age)
-      return res.status(200).json(person)
+      return res.status(201).json(person)
     } catch (error) {
-      if (error instanceof Error) {
-        return res.status(400).send(error.message)
+      console.log(error instanceof CustomError)
+      if (error instanceof CustomError) {
+        return res.status(error.status).send(error.message)
       }
-      return res.status(500).send(PersonErrorMessage.UNKNOWN)
+      return res.status(500).send('Um erro inesperado aconteceu durante a requisição')
     }
   }
 
@@ -30,7 +27,10 @@ class PersonController implements IPersonController {
       const personList = this.personService.getAll()
       return res.status(200).json(personList)
     } catch (error) {
-      return res.status(500).send(PersonErrorMessage.UNKNOWN)
+      if (error instanceof CustomError) {
+        return res.status(error.status).send(error.message)
+      }
+      return res.status(500).send('Um erro inesperado aconteceu durante a requisição')
     }
   }
 }
