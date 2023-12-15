@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-useless-constructor */
 class InvalidEmailError extends Error {
   readonly status: number
   constructor () {
