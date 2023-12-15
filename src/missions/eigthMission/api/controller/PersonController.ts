@@ -12,10 +12,10 @@ enum PersonErrorMessage {
 class PersonController implements IPersonController {
   constructor (readonly personService: IPersonService, readonly personValidator: IPersonValidator) {}
 
-  async create (req: Request, res: Response): Promise<Response<any, Record<string, any>>> {
+  create (req: Request, res: Response): Response<any, Record<string, any>> {
     try {
-      this.personValidator.validate(req.body.message)
-      const person = await this.personService.create(req.body.message)
+      this.personValidator.validate(req.body.name, req.body.email, req.body.age)
+      const person = this.personService.create(req.body.name, req.body.email, req.body.age)
       return res.status(200).json(person)
     } catch (error) {
       if (error instanceof Error) {
@@ -25,23 +25,10 @@ class PersonController implements IPersonController {
     }
   }
 
-  async getAll (res: Response): Promise<Response<any, Record<string, any>>> {
+  getAll (res: Response): Response<any, Record<string, any>> {
     try {
-      const personList = await this.personService.getAll()
+      const personList = this.personService.getAll()
       return res.status(200).json(personList)
-    } catch (error) {
-      return res.status(500).send(PersonErrorMessage.UNKNOWN)
-    }
-  }
-
-  async get (req: Request, res: Response): Promise<Response<any, Record<string, any>>> {
-    try {
-      const person = await this.personService.get(req.params.id)
-      if (person != null) {
-        return res.status(200).json(person)
-      } else {
-        return res.status(404).send(PersonErrorMessage.NOT_FOUND)
-      }
     } catch (error) {
       return res.status(500).send(PersonErrorMessage.UNKNOWN)
     }
