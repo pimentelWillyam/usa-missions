@@ -9,3 +9,4 @@ class InvalidAgeError extends Error {
   }
 }
 
+export default InvalidAgeError
