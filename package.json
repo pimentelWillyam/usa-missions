@@ -1,7 +1,10 @@
 {
   "scripts": {
+    "server": "ts-node src/index.ts",
     "test": "jest --runInBand --detectOpenHandles",
-    "lint": "npx eslint ./src/index.ts --fix"
+    "lint": "npx eslint ./src/index.ts --fix",
+    "eigth": "ts-node src/missions/eigthMission/eightMission.ts"
+
   },
   "dependencies": {
     "@types/supertest": "^2.0.12",
