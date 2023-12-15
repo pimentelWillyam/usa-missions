@@ -18,9 +18,6 @@ class PersonRouter implements IPersonRouter {
     this.routes.get('/person', (req: Request, res: Response) => {
       void personController.getAll(res)
     })
-    this.routes.get('/person/:id', (req: Request, res: Response) => {
-      void personController.get(req, res)
-    })
   }
 }
 
