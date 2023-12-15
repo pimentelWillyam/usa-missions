@@ -1,10 +1,8 @@
-class NameLengthBelowFourLettersError extends Error {
-  readonly status: number
+import CustomError from '../CustomError'
+
+class NameLengthBelowFourLettersError extends CustomError {
   constructor () {
-    super()
-    super.name = 'Nome abaixo de quatro letras'
-    super.message = 'Não é possivel cadastrar um nome com a quantidade de caracteres abaixo de quatro letras'
-    this.status = 400
+    super('Nome abaixo de quatro letras', 'Não é possivel cadastrar um nome com a quantidade de caracteres abaixo de quatro letras', 400)
   }
 }
 

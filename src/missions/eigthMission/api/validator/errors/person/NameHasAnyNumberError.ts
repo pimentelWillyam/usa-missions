@@ -1,10 +1,8 @@
-class NameHasAnyNumberError extends Error {
-  readonly status: number
+import CustomError from '../CustomError'
+
+class NameHasAnyNumberError extends CustomError {
   constructor () {
-    super()
-    super.name = 'Nome possui algum número'
-    super.message = 'Não é possivel cadastrar um nome que contenha números'
-    this.status = 400
+    super('Nome possui algum número', 'Não é possivel cadastrar um nome que contenha números', 400)
   }
 }
 

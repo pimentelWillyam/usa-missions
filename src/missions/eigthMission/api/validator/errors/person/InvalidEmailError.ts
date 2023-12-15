@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-useless-constructor */
-class InvalidEmailError extends Error {
-  readonly status: number
+import CustomError from '../CustomError'
+
+class InvalidEmailError extends CustomError {
   constructor () {
-    super()
-    super.name = 'Email inválido'
-    super.message = 'Não é possivel cadastrar um email inválido, ele precisa seguir o formato exemplo@exemplo.exemplo'
-    this.status = 400
+    super('Email inválido', 'Não é possivel cadastrar um email inválido, ele precisa seguir o formato exemplo@exemplo.exemplo', 400)
   }
 }
 

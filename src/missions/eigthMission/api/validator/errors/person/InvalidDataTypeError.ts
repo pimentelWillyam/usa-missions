@@ -1,10 +1,8 @@
-class InvalidDataTypeError extends Error {
-  readonly status: number
+import CustomError from '../CustomError'
+
+class InvalidDataTypeError extends CustomError {
   constructor (attribute: string) {
-    super()
-    super.name = 'Tipo de dado inválido'
-    super.message = `Não é possivel cadastrar um ${attribute} vazio, indefinido ou nulo`
-    this.status = 400
+    super('Tipo de dado inválido', `Não é possivel cadastrar um ${attribute} vazio, indefinido ou nulo`, 400)
   }
 }
 
