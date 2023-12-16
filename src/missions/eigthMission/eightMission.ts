@@ -10,9 +10,6 @@ import MemoryDataSource from './data/MemoryDataSource'
 import Api from './helper/Api'
 
 import * as express from 'express'
-import ApiMiddleware from './helper/ApiMiddleware'
-
-const apiMiddleware = new ApiMiddleware()
 
 const memoryDataSource = new MemoryDataSource()
 const personRepository = new PersonRepository(memoryDataSource)
@@ -20,7 +17,7 @@ const personService = new PersonService(personRepository)
 const personController = new PersonController(personService, new PersonValidator())
 const personRouter = new PersonRouter(personController)
 
-const api = new Api(express(), apiMiddleware, personRouter)
+const api = new Api(express(), personRouter)
 const app = new App(api, new Server())
 
 app.start()

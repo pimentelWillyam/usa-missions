@@ -1,4 +1,3 @@
-import type IApiMiddleware from '../api/interface/IApiMiddleware'
 import { type Express } from 'express'
 
 import type IPersonRouter from '../api/interface/IPersonRouter'
@@ -8,7 +7,7 @@ import * as cors from 'cors'
 import { json } from 'express'
 
 class Api {
-  constructor (readonly server: Express, readonly apiMiddleware: IApiMiddleware, readonly personRouter: IPersonRouter) {
+  constructor (readonly server: Express, readonly personRouter: IPersonRouter) {
     this.server.use(bodyParser.json())
     this.server.use(json())
     this.server.use(cors())
