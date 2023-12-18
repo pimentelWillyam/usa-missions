@@ -1,6 +1,6 @@
-import CustomError from '../CustomError'
+import KnownError from '../KnownError'
 
-class InvalidDataTypeError extends CustomError {
+class InvalidDataTypeError extends KnownError {
   constructor (attribute: string) {
     super('Tipo de dado inválido', `Não é possivel cadastrar um ${attribute} vazio, indefinido ou nulo`, 400)
   }
