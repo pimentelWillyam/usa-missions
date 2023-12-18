@@ -3,7 +3,7 @@ import { type Request, type Response } from 'express'
 import type IPersonController from '../interface/IPersonController'
 import type IPersonService from '../interface/IPersonService'
 import type IPersonValidator from '../interface/IPersonValidator'
-import CustomError from '../validator/errors/CustomError'
+import CustomError from '../validator/errors/KnownError'
 
 class PersonController implements IPersonController {
   constructor (readonly personService: IPersonService, readonly personValidator: IPersonValidator) {}
