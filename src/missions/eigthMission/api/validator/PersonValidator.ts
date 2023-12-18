@@ -7,9 +7,9 @@ import NameLengthBelowFourLettersError from './errors/person/NameLengthBelowFour
 
 class PersonValidator implements IPersonValidator {
   validate (name: string, email: string, age: number): void {
-    if (this.valueIsNullOrUndefined('name')) throw new InvalidDataTypeError('nome')
-    if (this.valueIsNullOrUndefined('email')) throw new InvalidDataTypeError('email')
-    if (this.valueIsNullOrUndefined('age')) throw new InvalidDataTypeError('idade')
+    if (this.valueIsNullOrUndefined(name)) throw new InvalidDataTypeError('nome')
+    if (this.valueIsNullOrUndefined(email)) throw new InvalidDataTypeError('email')
+    if (this.valueIsNullOrUndefined(age)) throw new InvalidDataTypeError('idade')
     if (!this.nameIsLongEnough(name)) throw new NameLengthBelowFourLettersError()
     if (!this.nameHasNoNumbers(name)) throw new NameHasAnyNumberError()
     if (!this.isEmailValid(email)) throw new InvalidEmailError()
@@ -39,7 +39,7 @@ class PersonValidator implements IPersonValidator {
   }
 
   private readonly valueIsNullOrUndefined = (value: unknown): boolean => {
-    if (value === null || value === undefined) return true
+    if (value === null || value === undefined || value === '') return true
     return false
   }
 }
