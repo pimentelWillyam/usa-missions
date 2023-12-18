@@ -3,7 +3,7 @@ import { type Request, type Response } from 'express'
 import type IPersonController from '../interface/IPersonController'
 import type IPersonService from '../interface/IPersonService'
 import type IPersonValidator from '../interface/IPersonValidator'
-import CustomError from '../validator/errors/KnownError'
+import KnownError from '../validator/errors/KnownError'
 
 class PersonController implements IPersonController {
   constructor (readonly personService: IPersonService, readonly personValidator: IPersonValidator) {}
@@ -14,9 +14,8 @@ class PersonController implements IPersonController {
       const person = this.personService.create(req.body.name, req.body.email, req.body.age)
       return res.status(201).json(person)
     } catch (error) {
-      console.log(error instanceof CustomError)
-      if (error instanceof CustomError) {
-        return res.status(error.status).send(error.message)
+      if (error instanceof KnownError) {
+        return res.status(error.status).send(error)
       }
       return res.status(500).send('Um erro inesperado aconteceu durante a requisição')
     }
@@ -27,8 +26,8 @@ class PersonController implements IPersonController {
       const personList = this.personService.getAll()
       return res.status(200).json(personList)
     } catch (error) {
-      if (error instanceof CustomError) {
-        return res.status(error.status).send(error.message)
+      if (error instanceof KnownError) {
+        return res.status(error.status).send(error)
       }
       return res.status(500).send('Um erro inesperado aconteceu durante a requisição')
     }
