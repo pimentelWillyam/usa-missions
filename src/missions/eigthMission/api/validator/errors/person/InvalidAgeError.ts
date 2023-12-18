@@ -1,6 +1,6 @@
-import CustomError from '../CustomError'
+import KnownError from '../KnownError'
 
-class InvalidAgeError extends CustomError {
+class InvalidAgeError extends KnownError {
   constructor () {
     super('Idade inválida', 'Não é possivel cadastrar uma idade inválida, para uma idade ser válida precisa estar entre 18 e 65', 400)
   }
