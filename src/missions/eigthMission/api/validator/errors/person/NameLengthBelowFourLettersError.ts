@@ -1,6 +1,6 @@
-import CustomError from '../CustomError'
+import KnownError from '../KnownError'
 
-class NameLengthBelowFourLettersError extends CustomError {
+class NameLengthBelowFourLettersError extends KnownError {
   constructor () {
     super('Nome abaixo de quatro letras', 'Não é possivel cadastrar um nome com a quantidade de caracteres abaixo de quatro letras', 400)
   }
