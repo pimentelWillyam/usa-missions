@@ -15,9 +15,9 @@ class PersonController implements IPersonController {
       return res.status(201).json(person)
     } catch (error) {
       if (error instanceof KnownError) {
-        return res.status(error.status).send(error)
+        return res.status(error.status).send({ name: error.name, message: error.message })
       }
-      return res.status(500).send('Um erro inesperado aconteceu durante a requisição')
+      return res.status(500).send({ name: 'Erro desconhecido', message: 'Um erro inesperado aconteceu durante a requisição' })
     }
   }
 
@@ -27,9 +27,9 @@ class PersonController implements IPersonController {
       return res.status(200).json(personList)
     } catch (error) {
       if (error instanceof KnownError) {
-        return res.status(error.status).send(error)
+        return res.status(error.status).send({ name: error.name, message: error.message })
       }
-      return res.status(500).send('Um erro inesperado aconteceu durante a requisição')
+      return res.status(500).send({ name: 'Erro desconhecido', message: 'Um erro inesperado aconteceu durante a requisição' })
     }
   }
 }
