@@ -10,10 +10,11 @@ import MemoryDataSource from './data/MemoryDataSource'
 import Api from './helper/Api'
 
 import * as express from 'express'
+import { NameNormalizer } from './helper/NameNormalizer'
 
 const memoryDataSource = new MemoryDataSource()
 const personRepository = new PersonRepository(memoryDataSource)
-const personService = new PersonService(personRepository)
+const personService = new PersonService(personRepository, new NameNormalizer())
 const personController = new PersonController(personService, new PersonValidator())
 const personRouter = new PersonRouter(personController)
 
