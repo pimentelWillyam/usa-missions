@@ -3,7 +3,9 @@
     "server": "ts-node src/index.ts",
     "test": "jest --runInBand --detectOpenHandles",
     "lint": "npx eslint ./src/index.ts --fix",
-    "eigth": "ts-node src/missions/eigthMission/eightMission.ts"
+    "eigth": "ts-node src/missions/eigthMission/eightMission.ts",
+    "ninth": "ts-node src/missions/ninthMission/ninthMission.ts"
+
 
   },
   "dependencies": {
