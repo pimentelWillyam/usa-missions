@@ -62,8 +62,9 @@ class PersonController implements IPersonController {
 
   delete (req: Request, res: Response): Response<any, Record<string, any>> {
     try {
-      const personList = this.personService.delete(req.params.id)
-      return res.status(200).json(personList)
+      const person = this.personService.delete(req.params.id)
+      if (person !== null) return res.status(200).send(person)
+      else return res.status(404).send({name: 'Pessoa não encontrada', message: 'Não foi possível encontrar uma pessoa com este ID'})
     } catch (error) {
       if (error instanceof KnownError) {
         return res.status(error.status).send({ name: error.name, message: error.message })
