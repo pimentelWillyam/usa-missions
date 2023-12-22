@@ -10,7 +10,7 @@ class PersonController implements IPersonController {
 
   create (req: Request, res: Response): Response<any, Record<string, any>> {
     try {
-      this.personValidator.validate(req.body.name, req.body.email, req.body.age)
+      this.personValidator.validateCreation(req.body.name, req.body.email, req.body.age)
       const person = this.personService.create(req.body.name, req.body.email, req.body.age)
       return res.status(201).json(person)
     } catch (error) {
