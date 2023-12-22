@@ -6,14 +6,24 @@ import NameHasAnyNumberError from './errors/person/NameHasAnyNumberError'
 import NameLengthBelowFourLettersError from './errors/person/NameLengthBelowFourLettersError'
 
 class PersonValidator implements IPersonValidator {
-  validate (name: string, email: string, age: number): void {
-    if (this.valueIsNullOrUndefined(name)) throw new InvalidDataTypeError('nome')
-    if (this.valueIsNullOrUndefined(email)) throw new InvalidDataTypeError('email')
-    if (this.valueIsNullOrUndefined(age)) throw new InvalidDataTypeError('idade')
+  validateCreation (name: string, email: string, age: number): void {
+    if (this.valueIsNullOrUndefinedOrEmpty(name)) throw new InvalidDataTypeError('nome')
+    if (this.valueIsNullOrUndefinedOrEmpty(email)) throw new InvalidDataTypeError('email')
+    if (this.valueIsNullOrUndefinedOrEmpty(age)) throw new InvalidDataTypeError('idade')
     if (!this.nameIsLongEnough(name)) throw new NameLengthBelowFourLettersError()
     if (!this.nameHasNoNumbers(name)) throw new NameHasAnyNumberError()
     if (!this.isEmailValid(email)) throw new InvalidEmailError()
     if (!this.isAgeValid(age)) throw new InvalidAgeError()
+  }
+
+  validateUpdate (name: string, email: string, age: number): void {
+    if (name !== undefined && this.valueIsNullOrEmpty(name)) throw new InvalidDataTypeError('nome')
+    if (email !== undefined && this.valueIsNullOrEmpty(email)) throw new InvalidDataTypeError('email')
+    if (age !== undefined && this.valueIsNullOrEmpty(age)) throw new InvalidDataTypeError('idade')
+    if (name !== undefined && !this.nameIsLongEnough(name)) throw new NameLengthBelowFourLettersError()
+    if (name !== undefined && !this.nameHasNoNumbers(name)) throw new NameHasAnyNumberError()
+    if (email !== undefined && !this.isEmailValid(email)) throw new InvalidEmailError()
+    if (age !== undefined && !this.isAgeValid(age)) throw new InvalidAgeError()
   }
 
   private readonly nameIsLongEnough = (name: string): boolean => {
@@ -38,8 +48,13 @@ class PersonValidator implements IPersonValidator {
     return false
   }
 
-  private readonly valueIsNullOrUndefined = (value: unknown): boolean => {
+  private readonly valueIsNullOrUndefinedOrEmpty = (value: unknown): boolean => {
     if (value === null || value === undefined || value === '') return true
+    return false
+  }
+
+  private readonly valueIsNullOrEmpty = (value: unknown): boolean => {
+    if (value === null || value === '') return true
     return false
   }
 }
