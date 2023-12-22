@@ -1,5 +1,7 @@
 interface ILogValidator {
-  validate: (name: string, email: string, age: number) => void
+  validateCreation: (name: string, email: string, age: number) => void
+  validateUpdate: (name: string, email: string, age: number) => void
+
 }
 
 export default ILogValidator
