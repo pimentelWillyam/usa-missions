@@ -20,7 +20,7 @@ class PersonService implements IPersonService {
   }
 
   update (id: string, personToBeUpdated: Person): Person | null {
-    return this.PersonRepository.update(id, personToBeUpdated)
+    return this.PersonRepository.update(id, this.fullNameNormalizer.normalize(personToBeUpdated.name), personToBeUpdated.email, personToBeUpdated.age)
   }
 
   delete (id: string): Person | null {
