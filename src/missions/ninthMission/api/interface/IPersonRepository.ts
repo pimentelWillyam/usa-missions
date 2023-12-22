@@ -7,7 +7,7 @@ interface IPersonRepository {
   create: (id: string, name: string, email: string, age: number) => Person
   getAll: () => Person[]
   get: (id: string) => Person | null
-  update: (id: string, personToBeUpdated: Person) => Person | null
+  update: (id: string, name: string, email: string, age: number) => Person | null
   delete: (id: string) => Person | null
 
 }
